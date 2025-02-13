@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title id="popupTitle">Настройки фильтрации</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 10px;
+      background: #f0f0f0;
+      color: #333;
+    }
+    textarea {
+      width: 100%;
+      height: 80px;
+      margin-bottom: 10px;
+      resize: vertical;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    button {
+      padding: 5px 10px;
+      font-size: 14px;
+      margin-bottom: 15px;
+      background: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    label {
+      font-size: 14px;
+      margin-bottom: 5px;
+      display: block;
+    }
+    select, input[type="checkbox"] {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="titleHeader">Настройки фильтрации</h2>
+
+  <label id="languageLabel" for="languageSelect">Язык:</label>
+  <select id="languageSelect">
+    <option value="ru">Русский</option>
+    <option value="en">English</option>
+  </select>
+
+  <label id="caseSensitiveLabel">
+    <input type="checkbox" id="caseSensitiveCheckbox"> Регистр чувствителен
+  </label>
+
+  <label id="keywordsLabel" for="keywordsArea">Ключевые слова (одно на строку):</label>
+  <textarea id="keywordsArea" placeholder="слово1&#10;слово2"></textarea>
+  <button id="saveKeywords">Сохранить ключевые слова</button>
+
+  <label id="whitelistLabel" for="whitelistArea">Whitelist сайтов (одно на строку):</label>
+  <textarea id="whitelistArea" placeholder="example.com&#10;anotherdomain.com"></textarea>
+  <button id="saveWhitelist">Сохранить whitelist</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
