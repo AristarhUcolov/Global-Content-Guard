@@ -1,5 +1,5 @@
 ## RU
-# GlobalContentGuard 🔐
+# 🔐 GlobalContentGuard 🔐
 
 GlobalContentGuard — это универсальное расширение для браузера Chrome, предназначенное для кибербезопасности и фильтрации нежелательного контента на всех веб-сайтах и в поисковых системах. 🚀 Расширение автоматически удаляет текст, изображения и блоки с заданными ключевыми словами, обеспечивая безопасный и комфортный просмотр. Поддерживается многоязычный интерфейс (🇷🇺/🇬🇧), настройка регистрозависимости и возможность исключения сайтов из фильтрации с помощью Whitelist.
 <img src="https://github.com/user-attachments/assets/2431bd3f-8e3a-4fb1-8c10-900bb4c27381" width="500">
@@ -36,7 +36,7 @@ GlobalContentGuard — это универсальное расширение д
 #chrome-extension, #content-filter, #cybersecurity, #privacy, #multilingual, #opensource, #globalcontentguard, #aristarhucolov
 
 ## ENG
-# GlobalContentGuard 🔐
+# 🔐 GlobalContentGuard 🔐
 
 GlobalContentGuard is a universal Chrome extension designed for cybersecurity and filtering unwanted content on all websites and search engines. 🚀 The extension automatically removes text, images, and blocks that contain specified keywords, ensuring a safer and more comfortable browsing experience. It supports a multilingual interface (🇷🇺/🇬🇧), offers case sensitivity settings, and allows the exclusion of specific websites via a Whitelist.
 <img src="https://github.com/user-attachments/assets/2431bd3f-8e3a-4fb1-8c10-900bb4c27381" width="500">
