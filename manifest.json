@@ -18,9 +18,9 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "guard.jpg",
-      "48": "guard.jpg",
-      "128": "guard.jpg"
+      "16": "guard.png",
+      "48": "guard.png",
+      "128": "guard.png"
     }
   }
 }
