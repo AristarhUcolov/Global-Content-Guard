@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Content Blocker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Content Blocker</h1>
+    
+    <div class="section">
+      <h2>Custom Filters</h2>
+      <textarea id="filterText" placeholder="Enter words or phrases to block (one per line)"></textarea>
+      <div class="options">
+        <label>
+          <input type="checkbox" id="caseSensitive"> Case Sensitive
+        </label>
+        <label>
+          <input type="checkbox" id="wholeWord"> Whole Word Only
+        </label>
+      </div>
+      <button id="saveFilters">Save Filters</button>
+      <button id="applyNow">Apply Now</button>
+    </div>
+    
+    <div class="section">
+      <h2>Presets</h2>
+      <div class="presets">
+        <label><input type="checkbox" class="preset" data-preset="anti-casino"> Anti-Casino</label>
+        <label><input type="checkbox" class="preset" data-preset="anti-porn"> Anti-Pornography</label>
+        <label><input type="checkbox" class="preset" data-preset="anti-drugs"> Anti-Drugs</label>
+      </div>
+      <button id="savePresets">Save Presets</button>
+    </div>
+    
+    <div class="section">
+      <h2>Whitelist</h2>
+      <textarea id="whitelist" placeholder="Enter domains to exclude (one per line)"></textarea>
+      <button id="saveWhitelist">Save Whitelist</button>
+    </div>
+	
+	<div class="donate">
+	<h2>Donate</h2>
+	<button id="donate">Donate - Buy Me a Coffee</button>
+	</div>
+    
+    <div class="status" id="status"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

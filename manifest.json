@@ -1,26 +1,25 @@
 {
   "manifest_version": 3,
-  "name": "GlobalContentGuard",
-  "author": "Aristarh Ucolov",
-  "version": "1.2",
-  "description": "A cybersecurity tool for filtering undesired content on websites and search engines. Helps users worldwide protect themselves from malicious content. by Aristarh Ucolov",
-  "permissions": ["storage"],
+  "name": "Global Content Guard - Content Blocker by Text",
+  "version": "1.0",
+  "description": "Block webpage elements containing specific text patterns",
+  "icons": {
+    "48": "icons/icon.png",
+    "128": "icons/icon.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": "icons/icon.png"
+  },
+  "permissions": ["storage", "activeTab"],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_start"
+      "js": ["content-script.js"],
+      "run_at": "document_end"
     }
-  ],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "guard.png",
-      "48": "guard.png",
-      "128": "guard.png"
-    }
-  }
+  ]
 }
