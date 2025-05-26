@@ -1,4 +1,8 @@
 ## RU
+[![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/ipceikogcggpnnenijogfalachefgafp?color=blue)](https://chrome.google.com/webstore/detail/global-content-guard-cont/ipceikogcggpnnenijogfalachefgafp)
+[![GitHub license](https://img.shields.io/badge/license-MIT-green)](https://github.com/AristarhUcolov/Global-Content-Guard/LICENSE)
+![Manifest Version](https://img.shields.io/badge/manifest-v3-important)
+
 # 🔐 GlobalContentGuard 🔐
 
 GlobalContentGuard — это универсальное расширение для браузера Chrome, предназначенное для кибербезопасности и фильтрации нежелательного контента на всех веб-сайтах и в поисковых системах. 🚀 Расширение автоматически удаляет текст, изображения и блоки с заданными ключевыми словами, обеспечивая безопасный и комфортный просмотр. Поддерживается многоязычный интерфейс (🇷🇺/🇬🇧), настройка регистрозависимости и возможность исключения сайтов из фильтрации с помощью Whitelist.
@@ -51,7 +55,7 @@ GlobalContentGuard is a universal Chrome extension designed for cybersecurity an
 
 ## Installation 💻
 1. Clone the repository or download the source code archive. 📥
-2. Navigate to [chrome://extensions/](chrome://extensions/) in Chrome. 🌟
+2. Navigate to [chrome://extensions/](chrome://extensions/global-content-guard-cont/ipceikogcggpnnenijogfalachefgafp) in Chrome. 🌟
 3. Enable Developer Mode. 🔧
 4. Click “Load unpacked” and select the project folder. 📂
 5. The extension is installed and ready to use. ✅
