@@ -49,7 +49,7 @@
 ## Поддержка проекта ☕
 Если расширение оказалось полезным, вы можете поддержать разработку:
 - ⭐ Поставьте звезду на GitHub
-- ☕ [Buy Me a Coffee](https://buymeacoffee.com) (доступно в расширении)
+- ☕ Donate via "Buy Me a Coffee" button in the extension popup
 - 📢 Расскажите о проекте друзьям
 
 ## Лицензия 📜
@@ -112,7 +112,7 @@
 ## Support the Project ☕
 If you find this extension useful, you can support development:
 - ⭐ Star the project on GitHub
-- ☕ [Buy Me a Coffee](https://buymeacoffee.com) (available in extension)
+- ☕ Donate via "Buy Me a Coffee" button in the extension popup
 - 📢 Share with friends
 
 ## License 📜
