@@ -2,51 +2,175 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Content Blocker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Content Guard</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div class="container">
-    <h1>Content Blocker</h1>
-    
-    <div class="section">
-      <h2>Custom Filters</h2>
-      <textarea id="filterText" placeholder="Enter words or phrases to block (one per line)"></textarea>
-      <div class="options">
-        <label>
-          <input type="checkbox" id="caseSensitive"> Case Sensitive
-        </label>
-        <label>
-          <input type="checkbox" id="wholeWord"> Whole Word Only
-        </label>
+    <header class="header">
+      <h1 id="mainTitle">Content Guard</h1>
+      <div class="header-right">
+        <button id="langSwitch" class="lang-btn" title="Switch Language">
+          <span class="lang-icon">🌐</span>
+          <span id="currentLang">EN</span>
+        </button>
+        <div class="version">v2.0</div>
       </div>
-      <button id="saveFilters">Save Filters</button>
-      <button id="applyNow">Apply Now</button>
+    </header>
+    
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="categories" id="tabCategories">Categories</button>
+      <button class="tab-btn" data-tab="custom" id="tabCustom">Custom</button>
+      <button class="tab-btn" data-tab="settings" id="tabSettings">Settings</button>
+      <button class="tab-btn" data-tab="stats" id="tabStatistics">Stats</button>
     </div>
     
-    <div class="section">
-      <h2>Presets</h2>
-      <div class="presets">
-        <label><input type="checkbox" class="preset" data-preset="anti-casino"> Anti-Casino</label>
-        <label><input type="checkbox" class="preset" data-preset="anti-porn"> Anti-Pornography</label>
-        <label><input type="checkbox" class="preset" data-preset="anti-drugs"> Anti-Drugs</label>
+    <!-- Categories Tab -->
+    <div class="tab-content active" id="categories">
+      <div class="section">
+        <h2 id="categoriesTitle">Filter Categories</h2>
+        <p class="description">Select categories to block automatically</p>
+        
+        <div class="category-grid">
+          <label class="category-card">
+            <input type="checkbox" class="category-checkbox" data-category="adult">
+            <div class="category-icon">🔞</div>
+            <div class="category-name" id="catAdult">Adult/NSFW Content</div>
+          </label>
+          
+          <label class="category-card">
+            <input type="checkbox" class="category-checkbox" data-category="gambling">
+            <div class="category-icon">🎰</div>
+            <div class="category-name" id="catGambling">Gambling & Casino</div>
+          </label>
+          
+          <label class="category-card">
+            <input type="checkbox" class="category-checkbox" data-category="drugs">
+            <div class="category-icon">💊</div>
+            <div class="category-name" id="catDrugs">Drugs & Substances</div>
+          </label>
+          
+          <label class="category-card">
+            <input type="checkbox" class="category-checkbox" data-category="violence">
+            <div class="category-icon">⚠️</div>
+            <div class="category-name" id="catViolence">Violence & Gore</div>
+          </label>
+          
+          <label class="category-card">
+            <input type="checkbox" class="category-checkbox" data-category="hate-speech">
+            <div class="category-icon">🚫</div>
+            <div class="category-name" id="catHateSpeech">Hate Speech</div>
+          </label>
+          
+          <label class="category-card">
+            <input type="checkbox" class="category-checkbox" data-category="dating">
+            <div class="category-icon">💘</div>
+            <div class="category-name" id="catDating">Dating & Hookups</div>
+          </label>
+        </div>
       </div>
-      <button id="savePresets">Save Presets</button>
     </div>
     
-    <div class="section">
-      <h2>Whitelist</h2>
-      <textarea id="whitelist" placeholder="Enter domains to exclude (one per line)"></textarea>
-      <button id="saveWhitelist">Save Whitelist</button>
+    <!-- Custom Filters Tab -->
+    <div class="tab-content" id="custom">
+      <div class="section">
+        <h2 id="customTitle">Custom Filters</h2>
+        <p class="description" id="customDesc">Add your own words/phrases to block (one per line)</p>
+        <textarea id="customFilters" rows="10" placeholder="Enter words or phrases..."></textarea>
+      </div>
     </div>
-	
-	<div class="donate">
-	<h2>Donate</h2>
-	<button id="donate">Donate - Buy Me a Coffee</button>
-	</div>
     
+    <!-- Settings Tab -->
+    <div class="tab-content" id="settings">
+      <div class="section">
+        <h2 id="settingsTitle">Settings</h2>
+        
+        <div class="setting-group">
+          <h3>Filter Options</h3>
+          <label class="setting-item">
+            <input type="checkbox" id="caseSensitive">
+            <span id="settingCaseSensitive">Case Sensitive</span>
+          </label>
+          
+          <label class="setting-item">
+            <input type="checkbox" id="wholeWord">
+            <span id="settingWholeWord">Whole Word Only</span>
+          </label>
+          
+          <label class="setting-item">
+            <input type="checkbox" id="blockImages">
+            <span id="settingBlockImages">Block Images</span>
+          </label>
+          
+          <label class="setting-item">
+            <input type="checkbox" id="blockVideos">
+            <span id="settingBlockVideos">Block Videos</span>
+          </label>
+          
+          <label class="setting-item">
+            <input type="checkbox" id="aggressiveMode">
+            <span id="settingAggressiveMode">Aggressive Mode</span>
+            <small id="aggressiveModeDesc">Hide entire containers if content matches</small>
+          </label>
+        </div>
+        
+        <div class="setting-group">
+          <h3 id="whitelistTitle">Whitelist</h3>
+          <p class="description" id="whitelistDesc">Trusted sites (one per line)</p>
+          <textarea id="whitelist" rows="5" placeholder="example.com&#10;youtube.com"></textarea>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Statistics Tab -->
+    <div class="tab-content" id="stats">
+      <div class="section">
+        <h2 id="statsTitle">Statistics</h2>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="statsBlockedTodayValue">0</div>
+            <div class="stat-label" id="statsBlockedTodayLabel">Blocked Today</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-value" id="statsBlockedTotalValue">0</div>
+            <div class="stat-label" id="statsBlockedTotalLabel">Total Blocked</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-value" id="statsActiveFiltersValue">0</div>
+            <div class="stat-label" id="statsActiveFiltersLabel">Active Filters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="actions">
+      <button id="saveBtn" class="btn btn-primary" data-i18n="saveButton">Save Settings</button>
+      <button id="applyBtn" class="btn btn-secondary" data-i18n="applyNowButton">Apply Now</button>
+    </div>
+    
+    <!-- Additional Actions -->
+    <div class="footer-actions">
+      <button id="resetBtn" class="btn btn-small" data-i18n="resetButton">Reset All</button>
+      <button id="exportBtn" class="btn btn-small" data-i18n="exportButton">Export</button>
+      <button id="importBtn" class="btn btn-small" data-i18n="importButton">Import</button>
+    </div>
+    
+    <!-- Donate Section -->
+    <div class="donate-section">
+      <h3 id="donateTitle">Support Development</h3>
+      <button id="donateBtn" class="btn btn-donate" data-i18n="donateButton">☕ Buy Me a Coffee</button>
+    </div>
+    
+    <!-- Status Message -->
     <div class="status" id="status"></div>
   </div>
+  
   <script src="popup.js"></script>
 </body>
 </html>

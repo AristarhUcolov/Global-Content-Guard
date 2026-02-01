@@ -1,0 +1,121 @@
+{
+  "extensionName": {
+    "message": "Global Content Guard - Smart Anti-NSFW & Content Blocker",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Block NSFW, adult, gambling, drugs, violence & unwanted content by text, images & videos on all websites. Smart filtering everywhere!",
+    "description": "Description of the extension"
+  },
+  "popupTitle": {
+    "message": "Content Guard"
+  },
+  "tabCategories": {
+    "message": "Categories"
+  },
+  "tabCustom": {
+    "message": "Custom Filters"
+  },
+  "tabSettings": {
+    "message": "Settings"
+  },
+  "tabStatistics": {
+    "message": "Statistics"
+  },
+  "categoryAdult": {
+    "message": "Adult/NSFW Content"
+  },
+  "categoryGambling": {
+    "message": "Gambling & Casino"
+  },
+  "categoryDrugs": {
+    "message": "Drugs & Substances"
+  },
+  "categoryViolence": {
+    "message": "Violence & Gore"
+  },
+  "categoryHateSpeech": {
+    "message": "Hate Speech"
+  },
+  "categoryDating": {
+    "message": "Dating & Hookups"
+  },
+  "customFiltersLabel": {
+    "message": "Add Your Custom Words/Phrases"
+  },
+  "customFiltersPlaceholder": {
+    "message": "Enter words or phrases to block (one per line)"
+  },
+  "caseSensitiveLabel": {
+    "message": "Case Sensitive"
+  },
+  "wholeWordLabel": {
+    "message": "Whole Word Only"
+  },
+  "blockImagesLabel": {
+    "message": "Block Images"
+  },
+  "blockVideosLabel": {
+    "message": "Block Videos"
+  },
+  "aggressiveModeLabel": {
+    "message": "Aggressive Mode"
+  },
+  "aggressiveModeDescription": {
+    "message": "Hide entire containers if content matches"
+  },
+  "whitelistLabel": {
+    "message": "Whitelist (Trusted Sites)"
+  },
+  "whitelistPlaceholder": {
+    "message": "Enter domains to exclude (one per line)\nExample: youtube.com"
+  },
+  "saveButton": {
+    "message": "Save Settings"
+  },
+  "applyNowButton": {
+    "message": "Apply Now"
+  },
+  "resetButton": {
+    "message": "Reset All"
+  },
+  "exportButton": {
+    "message": "Export Settings"
+  },
+  "importButton": {
+    "message": "Import Settings"
+  },
+  "statsBlockedToday": {
+    "message": "Blocked Today"
+  },
+  "statsBlockedTotal": {
+    "message": "Total Blocked"
+  },
+  "statsActiveFilters": {
+    "message": "Active Filters"
+  },
+  "donateTitle": {
+    "message": "Support Development"
+  },
+  "donateButton": {
+    "message": "Buy Me a Coffee"
+  },
+  "statusSaved": {
+    "message": "Settings saved successfully!"
+  },
+  "statusApplied": {
+    "message": "Filters applied to current page!"
+  },
+  "statusError": {
+    "message": "An error occurred. Please try again."
+  },
+  "statusReset": {
+    "message": "All settings have been reset."
+  },
+  "confirmReset": {
+    "message": "Are you sure you want to reset all settings?"
+  },
+  "enabledLabel": {
+    "message": "Enabled"
+  }
+}

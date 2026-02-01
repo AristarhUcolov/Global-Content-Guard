@@ -1,0 +1,121 @@
+{
+  "extensionName": {
+    "message": "Global Content Guard - Умный Анти-NSFW Блокировщик",
+    "description": "Название расширения"
+  },
+  "extensionDescription": {
+    "message": "Блокировка NSFW, взрослого контента, азартных игр, наркотиков, насилия по тексту, изображениям и видео на всех сайтах. Умная фильтрация везде!",
+    "description": "Описание расширения"
+  },
+  "popupTitle": {
+    "message": "Защита Контента"
+  },
+  "tabCategories": {
+    "message": "Категории"
+  },
+  "tabCustom": {
+    "message": "Свои Фильтры"
+  },
+  "tabSettings": {
+    "message": "Настройки"
+  },
+  "tabStatistics": {
+    "message": "Статистика"
+  },
+  "categoryAdult": {
+    "message": "Контент для Взрослых/NSFW"
+  },
+  "categoryGambling": {
+    "message": "Азартные Игры и Казино"
+  },
+  "categoryDrugs": {
+    "message": "Наркотики и Вещества"
+  },
+  "categoryViolence": {
+    "message": "Насилие и Жестокость"
+  },
+  "categoryHateSpeech": {
+    "message": "Язык Ненависти"
+  },
+  "categoryDating": {
+    "message": "Знакомства"
+  },
+  "customFiltersLabel": {
+    "message": "Добавьте Свои Слова/Фразы"
+  },
+  "customFiltersPlaceholder": {
+    "message": "Введите слова или фразы для блокировки (по одной на строку)"
+  },
+  "caseSensitiveLabel": {
+    "message": "Учитывать Регистр"
+  },
+  "wholeWordLabel": {
+    "message": "Только Целые Слова"
+  },
+  "blockImagesLabel": {
+    "message": "Блокировать Изображения"
+  },
+  "blockVideosLabel": {
+    "message": "Блокировать Видео"
+  },
+  "aggressiveModeLabel": {
+    "message": "Агрессивный Режим"
+  },
+  "aggressiveModeDescription": {
+    "message": "Скрывать целые контейнеры при совпадении"
+  },
+  "whitelistLabel": {
+    "message": "Белый Список (Доверенные Сайты)"
+  },
+  "whitelistPlaceholder": {
+    "message": "Введите домены для исключения (по одному на строку)\nПример: youtube.com"
+  },
+  "saveButton": {
+    "message": "Сохранить Настройки"
+  },
+  "applyNowButton": {
+    "message": "Применить Сейчас"
+  },
+  "resetButton": {
+    "message": "Сбросить Всё"
+  },
+  "exportButton": {
+    "message": "Экспорт Настроек"
+  },
+  "importButton": {
+    "message": "Импорт Настроек"
+  },
+  "statsBlockedToday": {
+    "message": "Заблокировано Сегодня"
+  },
+  "statsBlockedTotal": {
+    "message": "Всего Заблокировано"
+  },
+  "statsActiveFilters": {
+    "message": "Активных Фильтров"
+  },
+  "donateTitle": {
+    "message": "Поддержать Разработку"
+  },
+  "donateButton": {
+    "message": "Угостить Кофе"
+  },
+  "statusSaved": {
+    "message": "Настройки успешно сохранены!"
+  },
+  "statusApplied": {
+    "message": "Фильтры применены к текущей странице!"
+  },
+  "statusError": {
+    "message": "Произошла ошибка. Пожалуйста, попробуйте снова."
+  },
+  "statusReset": {
+    "message": "Все настройки были сброшены."
+  },
+  "confirmReset": {
+    "message": "Вы уверены, что хотите сбросить все настройки?"
+  },
+  "enabledLabel": {
+    "message": "Включено"
+  }
+}

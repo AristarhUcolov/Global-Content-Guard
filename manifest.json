@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Global Content Guard - Content Blocker by Text",
-  "version": "1.0",
-  "description": "Block webpage elements containing specific text patterns",
+  "name": "__MSG_extensionName__",
+  "version": "2.0",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
   "icons": {
     "48": "icons/icon.png",
     "128": "icons/icon.png"
@@ -11,7 +12,8 @@
     "default_popup": "popup/popup.html",
     "default_icon": "icons/icon.png"
   },
-  "permissions": ["storage", "activeTab"],
+  "permissions": ["storage", "activeTab", "scripting", "alarms"],
+  "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "background.js"
   },
@@ -19,7 +21,14 @@
     {
       "matches": ["<all_urls>"],
       "js": ["content-script.js"],
-      "run_at": "document_end"
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["categories/*.txt", "_locales/*/messages.json"],
+      "matches": ["<all_urls>"]
     }
   ]
 }
