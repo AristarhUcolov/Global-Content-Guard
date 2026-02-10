@@ -335,6 +335,7 @@ textarea::placeholder {
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   margin-top: 12px;
+  margin-bottom: 15px;
 }
 
 .stat-card {
@@ -343,6 +344,21 @@ textarea::placeholder {
   border-radius: 10px;
   text-align: center;
   border: 1px solid var(--border-color);
+}
+
+.stat-card-wide {
+  grid-column: span 3;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stat-card-wide .stat-label {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+}
+
+.stat-card-wide .stat-value {
+  color: #ffffff;
 }
 
 .stat-value {
@@ -434,6 +450,36 @@ textarea::placeholder {
   gap: 6px;
   padding: 8px 15px;
   justify-content: space-between;
+}
+
+/* Info Box */
+.info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.info-icon {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.info-text {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.info-text strong {
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 3px;
 }
 
 /* Donate Section */

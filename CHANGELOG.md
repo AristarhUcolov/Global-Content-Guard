@@ -11,6 +11,31 @@
 
 # English
 
+## Version 2.1.0 (February 2026)
+
+### 🌐 Website Blocking Feature
+
+#### ✨ NEW FEATURES
+- **NEW:** Block entire websites by domain
+- **NEW:** `websites_categories/` folder with domain lists
+  - `adult.txt` - Adult/NSFW websites
+  - `gambling.txt` - Gambling & Casino sites
+  - `drugs.txt` - Drug-related websites
+  - `violence.txt` - Violence & Gore sites
+  - `hate-speech.txt` - Hate speech websites
+  - `dating.txt` - Dating & Hookup sites
+- **NEW:** Warning page when accessing blocked websites
+- **NEW:** Domain matching supports subdomains
+- **NEW:** Comments support in domain lists (lines starting with #)
+
+#### 🔧 IMPROVEMENTS
+- Enhanced category system to block both text and websites
+- Statistics now include blocked websites
+- Better domain matching logic (supports wildcards)
+- Documentation for website blocking feature
+
+---
+
 ## Version 2.0.0 (February 2026)
 
 ### 🎉 Major Update - Complete Redesign
@@ -150,6 +175,31 @@
 ---
 
 # Русский
+
+## Версия 2.1.0 (Февраль 2026)
+
+### 🌐 Функция блокировки сайтов
+
+#### ✨ НОВЫЕ ФУНКЦИИ
+- **НОВОЕ:** Блокировка целых сайтов по домену
+- **НОВОЕ:** Папка `websites_categories/` со списками доменов
+  - `adult.txt` - Сайты для взрослых/NSFW
+  - `gambling.txt` - Сайты азартных игр и казино
+  - `drugs.txt` - Сайты о наркотиках
+  - `violence.txt` - Сайты с насилием
+  - `hate-speech.txt` - Сайты с языком ненависти
+  - `dating.txt` - Сайты знакомств
+- **НОВОЕ:** Предупреждающая страница при доступе к заблокированным сайтам
+- **НОВОЕ:** Совпадение доменов поддерживает поддомены
+- **НОВОЕ:** Поддержка комментариев в списках доменов (строки начинающиеся с #)
+
+#### 🔧 УЛУЧШЕНИЯ
+- Расширенная система категорий для блокировки текста и сайтов
+- Статистика теперь включает заблокированные сайты
+- Улучшенная логика совпадения доменов (поддержка подстановочных знаков)
+- Документация для функции блокировки сайтов
+
+---
 
 ## Версия 2.0.0 (Февраль 2026)
 

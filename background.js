@@ -10,8 +10,18 @@ const CATEGORIES = {
   dating: 'categories/dating.txt'
 };
 
-// Cache for category words
+const WEBSITE_CATEGORIES = {
+  adult: 'websites_categories/adult.txt',
+  gambling: 'websites_categories/gambling.txt',
+  drugs: 'websites_categories/drugs.txt',
+  violence: 'websites_categories/violence.txt',
+  'hate-speech': 'websites_categories/hate-speech.txt',
+  dating: 'websites_categories/dating.txt'
+};
+
+// Cache for category words and websites
 let categoryCache = {};
+let websiteCategoryCache = {};
 
 // Initialize extension
 chrome.runtime.onInstalled.addListener(async (details) => {
@@ -49,10 +59,26 @@ async function loadCategory(categoryName) {
     const text = await response.text();
     const words = text.split('\n')
       .map(line => line.trim())
-      .filter(line => line.length > 0);
+      .filter(line => line.length > 0 && !line.startsWith('#'));
     return words;
   } catch (error) {
     console.error(`Failed to load category ${categoryName}:`, error);
+    return [];
+  }
+}
+
+// Load a single website category file
+async function loadWebsiteCategory(categoryName) {
+  try {
+    const url = chrome.runtime.getURL(WEBSITE_CATEGORIES[categoryName]);
+    const response = await fetch(url);
+    const text = await response.text();
+    const domains = text.split('\n')
+      .map(line => line.trim().toLowerCase())
+      .filter(line => line.length > 0 && !line.startsWith('#'));
+    return domains;
+  } catch (error) {
+    console.error(`Failed to load website category ${categoryName}:`, error);
     return [];
   }
 }
@@ -62,7 +88,11 @@ async function loadAllCategories() {
   for (const categoryName of Object.keys(CATEGORIES)) {
     categoryCache[categoryName] = await loadCategory(categoryName);
   }
+  for (const categoryName of Object.keys(WEBSITE_CATEGORIES)) {
+    websiteCategoryCache[categoryName] = await loadWebsiteCategory(categoryName);
+  }
   console.log('All categories loaded:', Object.keys(categoryCache));
+  console.log('All website categories loaded:', Object.keys(websiteCategoryCache));
 }
 
 // Get combined filter list based on enabled categories and custom filters
@@ -156,6 +186,39 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "reloadCategories") {
     loadAllCategories().then(() => {
       sendResponse({ success: true });
+    });
+    return true;
+  }
+  
+  if (request.action === "checkBlockedWebsite") {
+    chrome.storage.sync.get(['enabledCategories'], (data) => {
+      const enabledCategories = data.enabledCategories || [];
+      const currentHostname = request.hostname;
+      
+      let isBlocked = false;
+      let blockedCategory = null;
+      
+      for (const category of enabledCategories) {
+        if (websiteCategoryCache[category]) {
+          const blockedDomains = websiteCategoryCache[category];
+          for (const domain of blockedDomains) {
+            // Check if current hostname matches or ends with the blocked domain
+            if (currentHostname === domain || 
+                currentHostname.endsWith('.' + domain) ||
+                domain.includes(currentHostname)) {
+              isBlocked = true;
+              blockedCategory = category;
+              break;
+            }
+          }
+          if (isBlocked) break;
+        }
+      }
+      
+      sendResponse({ 
+        isBlocked, 
+        category: blockedCategory 
+      });
     });
     return true;
   }

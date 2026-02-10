@@ -1,0 +1,139 @@
+# Dating & Hookups Websites
+# Add one domain per line (without http:// or https://)
+# Examples:
+# tinder.com
+# bumble.com
+# adultfriendfinder.com
+
+# Mainstream dating apps
+tinder.com
+bumble.com
+match.com
+pof.com
+okcupid.com
+hinge.co
+coffeemeetsbagel.com
+happn.com
+plenty-of-fish.com
+zoosk.com
+eharmony.com
+christianmingle.com
+jdate.com
+ourtime.com
+silversingles.com
+elitesingles.com
+
+# Adult/hookup dating
+adultfriendfinder.com
+ashleymadison.com
+benaughty.com
+flirt.com
+fapodrop.com
+fansly.com
+kharkov.ukrgo.com
+fapomania.com
+colorfans.com
+colorfans.com.ar
+colormusic.cl
+smotri.com
+alt.com
+fuckbook.com
+bangbuddies.com
+snapsext.com
+iamnaughty.com
+flirtlocal.com
+instabang.com
+together2night.com
+hookupguru.com
+seekingarrangement.com
+sugardaddymeet.com
+sugardaddie.com
+whatsyourprice.com
+
+# International dating
+russiancupid.com
+ukrainebrides4you.com
+anastasiadate.com
+charmdate.com
+asiandate.com
+latinamericancupid.com
+filipinocupid.com
+caribbeancupid.com
+thairomances.com
+vietnamese-dating.com
+
+# Alternative/niche dating
+feeld.co
+3fun.com
+bicupid.com
+grindr.com
+scruff.com
+jackd.com
+adam4adam.com
+manhunt.net
+gayromeo.com
+her.com
+scissr.com
+lex.app
+taimi.com
+
+# Sugar dating
+secretbenefits.com
+sugardaddy.com
+sugarbook.com
+luxurydate.com
+arrangement.com
+richmeetbeautiful.com
+
+# Affair/cheating sites
+ashleymadison.com
+illicitencounters.com
+victoria-milan.com
+gleeden.com
+heataffair.com
+marriedsecrets.com
+
+# Local/casual hookups
+localflirts.com
+meetlocals.com
+milfinder.com
+sexfinder.com
+passion.com
+findnewpassion.com
+naughtydate.com
+xdating.com
+redhotpie.com
+libertyaffairs.com
+
+# Video chat dating
+camsurf.com
+omegle.com
+chatroulette.com
+shagle.com
+chatspin.com
+emeraldchat.com
+chatrandom.com
+tinychat.com
+chatous.com
+
+# Adult content + dating hybrid
+camsoda.com
+myfreecams.com
+livejasmin.com
+imlive.com
+streamate.com
+flirt4free.com
+xlovecam.com
+slutroulette.com
+
+# Regional dating platforms
+meetic.com
+meetic.fr
+parship.com
+lovoo.com
+badoo.com
+tagged.com
+meetme.com
+skout.com
+mamba.ru
+loveplanet.ru

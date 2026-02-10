@@ -94,6 +94,9 @@
   "statsActiveFilters": {
     "message": "Active Filters"
   },
+  "statsBlockedWebsites": {
+    "message": "🌐 Blocked Websites"
+  },
   "donateTitle": {
     "message": "Support Development"
   },

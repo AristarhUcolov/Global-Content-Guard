@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
-  "version": "2.0",
+  "version": "2.1",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "icons": {
@@ -27,7 +27,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["categories/*.txt", "_locales/*/messages.json"],
+      "resources": ["categories/*.txt", "websites_categories/*.txt", "_locales/*/messages.json"],
       "matches": ["<all_urls>"]
     }
   ]

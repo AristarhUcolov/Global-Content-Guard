@@ -1,0 +1,160 @@
+# Gambling & Casino Websites
+# Add one domain per line (without http:// or https://)
+# Examples:
+# bet365.com
+# 1xbet.com
+# casino.com
+
+# Major online casinos
+bet365.com
+1xbet.com
+888casino.com
+williamhill.com
+betway.com
+unibet.com
+pokerstars.com
+pinnacle.com
+sportsbet.io
+stake.com
+bwin.com
+betfair.com
+paddypower.com
+ladbrokes.com
+coral.co.uk
+skybet.com
+betfred.com
+bodog.com
+bovada.lv
+intertops.com
+betonline.ag
+
+# Crypto casinos
+stake.com
+bc.game
+rollbit.com
+duelbits.com
+roobet.com
+wolf.bet
+bitcasino.io
+fortunejack.com
+cloudbet.com
+sportsbet.io
+bitstarz.com
+7bitcasino.com
+
+# Poker sites
+pokerstars.com
+888poker.com
+partypoker.com
+ggpoker.com
+winamax.com
+pokerstars.net
+fullcontactpoker.com
+acr.eu
+americascardroom.eu
+
+# Sports betting
+draftkings.com
+fanduel.com
+bet365.com
+williamhill.com
+betmgm.com
+caesars.com
+pointsbet.com
+barstoolsportsbook.com
+unibet.com
+10bet.com
+betvictor.com
+
+# Slot and casino games
+slottica.com
+casumo.com
+leovegas.com
+mrgreen.com
+betsson.com
+casinoeuro.com
+videoslots.com
+rizk.com
+casinoroom.com
+
+# Betting exchanges
+betfair.com
+matchbook.com
+smarkets.com
+betdaq.com
+
+# Fantasy sports
+draftkings.com
+fanduel.com
+yahoo.com/fantasy
+espn.com/fantasy
+
+# Lottery
+lottoland.com
+thelotter.com
+lotto.com
+jackpocket.com
+playlotto.com
+
+# Chinese/Asian gambling sites
+ktx256.cc
+6525748.cc:8443
+3654598.cc:8443
+3836479.cc:8443
+6525748.cc
+3654598.cc
+3836479.cc
+hg28271.com
+495a95.com
+biying865465.com
+biying865465.com:30120
+12bet.com
+dafabet.com
+w88.com
+fun88.com
+m88.com
+
+# Binary options (gambling-like)
+iqoption.com
+olymptrade.com
+expertoption.com
+binomo.com
+binarymate.com
+
+# Skin gambling (CS:GO, etc)
+csgolounge.com
+csgofast.com
+csgobig.com
+csgoempire.com
+csgopolygon.com
+hellcase.com
+csgoroll.com
+csgoatse.com
+
+# Daily fantasy sports
+draftkings.com
+fanduel.com
+prizepicks.com
+underdog.com
+monkey-knife-fight.com
+
+# Horse racing betting
+tvg.com
+twinspires.com
+xpressbet.com
+betamerica.com
+nyra.com
+
+# Bingo sites
+bingo.com
+tombola.co.uk
+meccabingo.com
+galabingo.com
+sunbingo.co.uk
+
+# Other gambling platforms
+nitrogen.io
+primedice.com
+bustabit.com
+bustadice.com
+crash.game

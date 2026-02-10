@@ -39,6 +39,7 @@
 ### 🚀 New Features
 - ✅ **Image Blocking** by alt-text, src, title
 - ✅ **Video Blocking** and iframe filtering
+- ✅ **Website Blocking** - block entire websites by domain
 - ✅ **Aggressive Mode** - hides entire containers
 - ✅ **MutationObserver** - works with dynamic content
 - ✅ **SPA Support** - React, Vue, Angular
@@ -86,12 +87,25 @@
 - Open extension popup
 - Go to **"Categories"** tab
 - Enable desired categories (Adult, Gambling, Drugs, Violence, Hate Speech, Dating)
+- **Categories block both words AND websites** - when enabled, blocks text content and entire domains
 
 ### 2️⃣ Custom Filters
 - Go to **"Custom"** tab
 - Add your own words (one per line)
 
-### 3️⃣ Settings
+### 3️⃣ Website Blocking
+- Edit files in `websites_categories/` folder:
+  - `adult.txt` - adult/NSFW sites
+  - `gambling.txt` - gambling sites
+  - `drugs.txt` - drug-related sites
+  - `violence.txt` - violence sites
+  - `hate-speech.txt` - hate speech sites
+  - `dating.txt` - dating sites
+- Add domains (one per line, without http://)
+- Example: `pornhub.com`, `bet365.com`
+- Blocks entire website with warning page
+
+### 4️⃣ Settings
 - **Case Sensitive** - distinguish uppercase/lowercase
 - **Whole Word** - match complete words only
 - **Block Images** - filter images by alt/src
@@ -99,9 +113,9 @@
 - **Aggressive Mode** - hide entire content blocks
 - **Whitelist** - trusted domains
 
-### 4️⃣ Statistics
+### 5️⃣ Statistics
 - 📊 **Blocked Today** - daily counter
-- 📈 **Total Blocked** - overall statistics
+- 📈 **Total Blocked** - overall statistics (words + websites)
 - 🔍 **Active Filters** - number of rules
 - 🔄 **Resets at Midnight** - daily update
 
@@ -140,6 +154,7 @@ MIT License © 2026 Aristarh Ucolov - see [LICENSE](LICENSE) file for details
 ### 🚀 Новые возможности
 - ✅ **Блокировка изображений** по alt-тексту, src, title
 - ✅ **Блокировка видео** и iframe
+- ✅ **Блокировка сайтов** - блокировка целых сайтов по домену
 - ✅ **Агрессивный режим** - скрывает целые контейнеры
 - ✅ **MutationObserver** - работа с динамическим контентом
 - ✅ **Поддержка SPA** - React, Vue, Angular
@@ -187,12 +202,25 @@ MIT License © 2026 Aristarh Ucolov - see [LICENSE](LICENSE) file for details
 - Откройте popup расширения
 - Перейдите на вкладку **"Категории"**
 - Включите нужные категории (Adult, Gambling, Drugs, Violence, Hate Speech, Dating)
+- **Категории блокируют И слова, И сайты** - при включении блокирует текстовый контент и целые домены
 
 ### 2️⃣ Пользовательские фильтры
 - Вкладка **"Свои фильтры"**
 - Добавьте свои слова (по одному на строку)
 
-### 3️⃣ Настройки
+### 3️⃣ Блокировка сайтов
+- Редактируйте файлы в папке `websites_categories/`:
+  - `adult.txt` - сайты для взрослых/NSFW
+  - `gambling.txt` - сайты азартных игр
+  - `drugs.txt` - сайты о наркотиках
+  - `violence.txt` - сайты с насилием
+  - `hate-speech.txt` - сайты с языком ненависти
+  - `dating.txt` - сайты знакомств
+- Добавьте домены (по одному на строку, без http://)
+- Пример: `pornhub.com`, `bet365.com`
+- Блокирует весь сайт с предупреждающей страницей
+
+### 4️⃣ Настройки
 - **Регистр важен** - различать заглавные/строчные
 - **Целые слова** - искать только полные слова
 - **Блокировать изображения** - фильтровать картинки по alt/src
@@ -200,9 +228,9 @@ MIT License © 2026 Aristarh Ucolov - see [LICENSE](LICENSE) file for details
 - **Агрессивный режим** - скрывать целые блоки контента
 - **Белый список** - доверенные домены
 
-### 4️⃣ Статистика
+### 5️⃣ Статистика
 - 📊 **Заблокировано сегодня** - счетчик за день
-- 📈 **Всего заблокировано** - общая статистика
+- 📈 **Всего заблокировано** - общая статистика (слова + сайты)
 - 🔍 **Активных фильтров** - количество правил
 - 🔄 **Сброс в полночь** - ежедневное обновление
 

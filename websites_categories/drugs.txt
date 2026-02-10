@@ -1,0 +1,92 @@
+# Drugs & Substances Websites
+# Add one domain per line (without http:// or https://)
+# Examples:
+# Add domains here
+
+# Dark web markets and drug forums
+silk-road.com
+alphabay.com
+hansa-market.com
+dream-market.com
+wallstreetmarket.com
+empire-market.com
+whitehouse-market.com
+archetyp-market.com
+tor2door.com
+vice-city-market.com
+abacus-market.com
+
+# Drug information and harm reduction (controversial)
+erowid.org
+drugs-forum.com
+bluelight.org
+psychonautwiki.org
+tripsit.me
+
+# Cannabis-related commercial sites
+weedmaps.com
+leafly.com
+kushfly.com
+eaze.com
+weedmart.org
+420magazine.com
+grasscity.com
+
+# Drug marketplaces and delivery
+marijuana.com
+medmen.com
+cannabisdelivery.org
+potguide.com
+wheresweed.com
+buymyweedonline.com
+cannabisdeliverytime.com
+marijuanadoctors.com
+
+# Steroid and enhancement drugs
+steroid.com
+anabolic-steroids.org
+steroidsportsdata.org
+elitefitness.com
+anabolicmen.com
+evolutionary.org
+
+# Psychedelic and research chemicals
+researchchemicals.com
+1plsd.com
+psychedelicscience.org
+maps.org
+shroomery.org
+dmtnexus.me
+
+# Drug paraphernalia
+grasscity.com
+everyonedoesit.com
+smokecartel.com
+420science.com
+bongoutlet.com
+
+# Darknet and onion sites (clearnet mirrors)
+hidden-wiki.com
+thehiddenwiki.org
+deepdotweb.com
+darknetlive.com
+darkfail.com
+darknetmarket.com
+
+# Online pharmacies (illegal/unverified)
+canadapharmacy.com
+canadadrugsdirect.com
+pharmacychecker.com
+rx-safe.com
+canadadrugs.com
+northwestpharmacy.com
+canadadrugsonline.com
+
+# Kratom and legal highs
+kratomcrazy.com
+getkratom.com
+kratom.com
+kratomspot.com
+buylegalhighsonline.org
+legalherbalshop.com
+herbal-incense.org

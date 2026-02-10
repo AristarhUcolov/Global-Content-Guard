@@ -143,6 +143,7 @@ function getI18nKey(elementId) {
     'statsBlockedTodayLabel': 'statsBlockedToday',
     'statsBlockedTotalLabel': 'statsBlockedTotal',
     'statsActiveFiltersLabel': 'statsActiveFilters',
+    'statsBlockedWebsitesLabel': 'statsBlockedWebsites',
     'donateTitle': 'donateTitle'
   };
   
@@ -383,14 +384,49 @@ function importSettings() {
 
 // Update statistics
 function updateStatistics() {
-  chrome.storage.sync.get(['statistics'], function(data) {
+  chrome.storage.sync.get(['statistics', 'enabledCategories'], function(data) {
     if (data.statistics) {
       document.getElementById('statsBlockedTodayValue').textContent = data.statistics.blockedToday || 0;
       document.getElementById('statsBlockedTotalValue').textContent = data.statistics.blockedTotal || 0;
     }
+    
+    // Count blocked websites from enabled categories
+    countBlockedWebsites(data.enabledCategories || []);
   });
   
   updateActiveFiltersCount();
+}
+
+// Count total blocked websites
+async function countBlockedWebsites(enabledCategories) {
+  let totalWebsites = 0;
+  
+  const websiteCategories = {
+    'adult': 'websites_categories/adult.txt',
+    'gambling': 'websites_categories/gambling.txt',
+    'drugs': 'websites_categories/drugs.txt',
+    'violence': 'websites_categories/violence.txt',
+    'hate-speech': 'websites_categories/hate-speech.txt',
+    'dating': 'websites_categories/dating.txt'
+  };
+  
+  for (const category of enabledCategories) {
+    if (websiteCategories[category]) {
+      try {
+        const url = chrome.runtime.getURL(websiteCategories[category]);
+        const response = await fetch(url);
+        const text = await response.text();
+        const domains = text.split('\n')
+          .map(line => line.trim().toLowerCase())
+          .filter(line => line.length > 0 && !line.startsWith('#'));
+        totalWebsites += domains.length;
+      } catch (error) {
+        console.error(`Failed to load ${category} websites:`, error);
+      }
+    }
+  }
+  
+  document.getElementById('statsBlockedWebsitesValue').textContent = totalWebsites;
 }
 
 // Update active filters count

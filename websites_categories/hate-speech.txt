@@ -1,0 +1,64 @@
+# Hate Speech Websites
+# Add one domain per line (without http:// or https://)
+# Examples:
+# Add domains here
+
+# Extremist forums and imageboards
+8kun.top
+8chan.moe
+4chan.org
+4channel.org
+endchan.org
+kohlchan.net
+krautchan.net
+2ch.hk
+
+# Conspiracy and extremist content
+infowars.com
+prisonplanet.com
+naturalnews.com
+beforeitsnews.com
+henrymakow.com
+rense.com
+rumormillnews.com
+
+# Incel and misogyny forums
+incels.is
+incels.co
+incels.net
+incel.wiki
+looksmax.org
+sluthate.com
+wizardchan.org
+
+# Violent extremist content
+jihadwatch.org
+thereligionofpeace.com
+pamelageller.com
+
+# Other extremist platforms
+gab.com
+parler.com
+gettr.com
+minds.com
+voat.co
+saidit.net
+ruqqus.com
+poal.co
+
+# Holocaust denial
+codoh.com
+ihr.org
+zundelsite.org
+
+# Imageboards with hate content
+soyjak.party
+sharty.party
+kiwifarms.net
+kiwifarms.st
+lolcow.farm
+
+# International extremist sites
+atomwaffen.org
+ironmarch.org
+fascistforge.org
