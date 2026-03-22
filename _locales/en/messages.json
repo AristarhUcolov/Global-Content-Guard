@@ -10,53 +10,104 @@
   "popupTitle": {
     "message": "Content Guard"
   },
-  "tabCategories": {
-    "message": "Categories"
+  "tabDashboard": {
+    "message": "Dashboard"
   },
-  "tabCustom": {
-    "message": "Custom Filters"
+  "tabProtection": {
+    "message": "Protection"
   },
   "tabSettings": {
     "message": "Settings"
   },
   "tabStatistics": {
-    "message": "Statistics"
+    "message": "Stats"
+  },
+  "statusProtected": {
+    "message": "Protection Active"
+  },
+  "statusProtectedDesc": {
+    "message": "Your browsing is protected"
+  },
+  "statusPaused": {
+    "message": "Protection Paused"
+  },
+  "statusPausedDesc": {
+    "message": "Content filtering is disabled"
+  },
+  "websiteBlocking": {
+    "message": "Website Blocking"
+  },
+  "websiteBlockingDesc": {
+    "message": "Block entire sites"
+  },
+  "contentFiltering": {
+    "message": "Content Filtering"
+  },
+  "contentFilteringDesc": {
+    "message": "Hide matching content"
+  },
+  "categoriesTitle": {
+    "message": "Filter Categories"
+  },
+  "categoriesDesc": {
+    "message": "Select categories to block"
   },
   "categoryAdult": {
-    "message": "Adult/NSFW Content"
+    "message": "Adult/NSFW"
   },
   "categoryGambling": {
-    "message": "Gambling & Casino"
+    "message": "Gambling"
   },
   "categoryDrugs": {
-    "message": "Drugs & Substances"
+    "message": "Drugs"
   },
   "categoryViolence": {
-    "message": "Violence & Gore"
+    "message": "Violence"
   },
   "categoryHateSpeech": {
     "message": "Hate Speech"
   },
   "categoryDating": {
-    "message": "Dating & Hookups"
+    "message": "Dating"
+  },
+  "customBlockedSitesLabel": {
+    "message": "Blocked Sites"
+  },
+  "customBlockedSitesDesc": {
+    "message": "Add domains to block (one per line)"
+  },
+  "customBlockedSitesPlaceholder": {
+    "message": "example.com\nbad-site.org"
+  },
+  "linkedToSites": {
+    "message": "Website Blocking"
+  },
+  "linkedToText": {
+    "message": "Content Filtering"
   },
   "customFiltersLabel": {
-    "message": "Add Your Custom Words/Phrases"
+    "message": "Custom Filters"
+  },
+  "customFiltersDesc": {
+    "message": "Add words or phrases to hide (one per line)"
   },
   "customFiltersPlaceholder": {
-    "message": "Enter words or phrases to block (one per line)"
+    "message": "Enter words or phrases to block..."
   },
-  "caseSensitiveLabel": {
-    "message": "Case Sensitive"
-  },
-  "wholeWordLabel": {
-    "message": "Whole Word Only"
+  "filterOptionsTitle": {
+    "message": "Filter Options"
   },
   "blockImagesLabel": {
     "message": "Block Images"
   },
+  "blockImagesDesc": {
+    "message": "Hide images with matching metadata"
+  },
   "blockVideosLabel": {
     "message": "Block Videos"
+  },
+  "blockVideosDesc": {
+    "message": "Hide videos and iframes"
   },
   "aggressiveModeLabel": {
     "message": "Aggressive Mode"
@@ -64,26 +115,41 @@
   "aggressiveModeDescription": {
     "message": "Hide entire containers if content matches"
   },
+  "wholeWordLabel": {
+    "message": "Whole Word Only"
+  },
+  "wholeWordDesc": {
+    "message": "Match complete words only"
+  },
+  "caseSensitiveLabel": {
+    "message": "Case Sensitive"
+  },
+  "caseSensitiveDesc": {
+    "message": "Distinguish upper/lower case"
+  },
   "whitelistLabel": {
-    "message": "Whitelist (Trusted Sites)"
+    "message": "Whitelist"
+  },
+  "whitelistDesc": {
+    "message": "Trusted sites excluded from filtering"
   },
   "whitelistPlaceholder": {
-    "message": "Enter domains to exclude (one per line)\nExample: youtube.com"
+    "message": "example.com\nyoutube.com"
   },
   "saveButton": {
-    "message": "Save Settings"
+    "message": "Save"
   },
   "applyNowButton": {
     "message": "Apply Now"
   },
   "resetButton": {
-    "message": "Reset All"
+    "message": "Reset"
   },
   "exportButton": {
-    "message": "Export Settings"
+    "message": "Export"
   },
   "importButton": {
-    "message": "Import Settings"
+    "message": "Import"
   },
   "statsBlockedToday": {
     "message": "Blocked Today"
@@ -95,30 +161,57 @@
     "message": "Active Filters"
   },
   "statsBlockedWebsites": {
-    "message": "🌐 Blocked Websites"
+    "message": "Blocked Sites"
+  },
+  "categoriesBreakdown": {
+    "message": "Categories Breakdown"
+  },
+  "words": {
+    "message": "Words"
+  },
+  "sites": {
+    "message": "Sites"
+  },
+  "legendSites": {
+    "message": "Sites"
+  },
+  "legendText": {
+    "message": "Text"
+  },
+  "statsInfo": {
+    "message": "Each category can independently block websites and filter text content on pages."
   },
   "donateTitle": {
     "message": "Support Development"
   },
   "donateButton": {
-    "message": "Buy Me a Coffee"
+    "message": "Support"
   },
   "statusSaved": {
-    "message": "Settings saved successfully!"
+    "message": "Settings saved!"
   },
   "statusApplied": {
-    "message": "Filters applied to current page!"
+    "message": "Filters applied!"
   },
-  "statusError": {
-    "message": "An error occurred. Please try again."
+  "statusRefreshNeeded": {
+    "message": "Refresh the page to apply"
   },
   "statusReset": {
-    "message": "All settings have been reset."
+    "message": "Settings reset"
+  },
+  "statusError": {
+    "message": "An error occurred"
   },
   "confirmReset": {
-    "message": "Are you sure you want to reset all settings?"
+    "message": "Reset all settings to defaults?"
   },
-  "enabledLabel": {
-    "message": "Enabled"
+  "exportSuccess": {
+    "message": "Settings exported"
+  },
+  "importSuccess": {
+    "message": "Settings imported"
+  },
+  "importError": {
+    "message": "Invalid settings file"
   }
 }

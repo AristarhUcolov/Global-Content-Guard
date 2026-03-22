@@ -3,187 +3,367 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">Content Guard</title>
+  <title id="pageTitle">Global Content Guard</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div class="container">
+  <div class="app">
+    <!-- Header -->
     <header class="header">
-      <h1 id="mainTitle">Content Guard</h1>
+      <div class="header-left">
+        <div class="header-logo">&#x1f6e1;&#xfe0f;</div>
+        <div class="header-info">
+          <h1 id="mainTitle">Content Guard</h1>
+          <span class="version-badge">v3.0</span>
+        </div>
+      </div>
       <div class="header-right">
         <button id="langSwitch" class="lang-btn" title="Switch Language">
-          <span class="lang-icon">🌐</span>
           <span id="currentLang">EN</span>
         </button>
-        <div class="version">v2.1</div>
+        <label class="toggle-switch master-toggle" title="Master Toggle">
+          <input type="checkbox" id="masterToggle" checked>
+          <span class="slider"></span>
+        </label>
       </div>
     </header>
-    
-    <!-- Tabs -->
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="categories" id="tabCategories">Categories</button>
-      <button class="tab-btn" data-tab="custom" id="tabCustom">Custom</button>
-      <button class="tab-btn" data-tab="settings" id="tabSettings">Settings</button>
-      <button class="tab-btn" data-tab="stats" id="tabStatistics">Stats</button>
-    </div>
-    
-    <!-- Categories Tab -->
-    <div class="tab-content active" id="categories">
-      <div class="section">
-        <h2 id="categoriesTitle">Filter Categories</h2>
-        <p class="description">Select categories to block automatically</p>
-        
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="dashboard">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span data-i18n="tabDashboard">Dashboard</span>
+      </button>
+      <button class="nav-tab" data-tab="protection">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span data-i18n="tabProtection">Protection</span>
+      </button>
+      <button class="nav-tab" data-tab="settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span data-i18n="tabSettings">Settings</span>
+      </button>
+      <button class="nav-tab" data-tab="stats">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span data-i18n="tabStatistics">Stats</span>
+      </button>
+    </nav>
+
+    <!-- Content Area -->
+    <div class="content">
+
+      <!-- Dashboard Tab -->
+      <div class="tab-panel active" id="dashboard">
+        <!-- Status Banner -->
+        <div class="status-banner" id="statusBanner">
+          <div class="status-icon" id="statusIcon">&#x1f6e1;&#xfe0f;</div>
+          <div class="status-text">
+            <div class="status-title" id="statusTitle">Protection Active</div>
+            <div class="status-subtitle" id="statusSubtitle">Your browsing is protected</div>
+          </div>
+        </div>
+
+        <!-- Feature Toggle Cards -->
+        <div class="feature-cards">
+          <div class="feature-card" id="websiteBlockingCard">
+            <div class="feature-header">
+              <div class="feature-icon">&#x1f310;</div>
+              <div class="feature-info">
+                <div class="feature-name" data-i18n="websiteBlocking">Website Blocking</div>
+                <div class="feature-desc" data-i18n="websiteBlockingDesc">Block entire sites</div>
+              </div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="websiteBlockingToggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="feature-card" id="contentFilteringCard">
+            <div class="feature-header">
+              <div class="feature-icon">&#x1f4dd;</div>
+              <div class="feature-info">
+                <div class="feature-name" data-i18n="contentFiltering">Content Filtering</div>
+                <div class="feature-desc" data-i18n="contentFilteringDesc">Hide matching content</div>
+              </div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="contentFilteringToggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+          <div class="quick-stat">
+            <div class="quick-stat-value" id="dashBlockedToday">0</div>
+            <div class="quick-stat-label" data-i18n="statsBlockedToday">Blocked Today</div>
+          </div>
+          <div class="quick-stat">
+            <div class="quick-stat-value" id="dashBlockedTotal">0</div>
+            <div class="quick-stat-label" data-i18n="statsBlockedTotal">Total Blocked</div>
+          </div>
+          <div class="quick-stat">
+            <div class="quick-stat-value" id="dashActiveFilters">0</div>
+            <div class="quick-stat-label" data-i18n="statsActiveFilters">Active Filters</div>
+          </div>
+          <div class="quick-stat">
+            <div class="quick-stat-value" id="dashBlockedSites">0</div>
+            <div class="quick-stat-label" data-i18n="statsBlockedWebsites">Blocked Sites</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Protection Tab -->
+      <div class="tab-panel" id="protection">
+        <!-- Legend -->
+        <div class="cat-legend">
+          <div class="cat-legend-item">
+            <span class="cat-legend-dot cat-legend-dot-sites"></span>
+            <span data-i18n="legendSites">Sites</span>
+          </div>
+          <div class="cat-legend-item">
+            <span class="cat-legend-dot cat-legend-dot-text"></span>
+            <span data-i18n="legendText">Text</span>
+          </div>
+        </div>
+
+        <!-- Category Cards with dual toggles -->
         <div class="category-grid">
-          <label class="category-card">
-            <input type="checkbox" class="category-checkbox" data-category="adult">
-            <div class="category-icon">🔞</div>
-            <div class="category-name" id="catAdult">Adult/NSFW Content</div>
-          </label>
-          
-          <label class="category-card">
-            <input type="checkbox" class="category-checkbox" data-category="gambling">
-            <div class="category-icon">🎰</div>
-            <div class="category-name" id="catGambling">Gambling & Casino</div>
-          </label>
-          
-          <label class="category-card">
-            <input type="checkbox" class="category-checkbox" data-category="drugs">
-            <div class="category-icon">💊</div>
-            <div class="category-name" id="catDrugs">Drugs & Substances</div>
-          </label>
-          
-          <label class="category-card">
-            <input type="checkbox" class="category-checkbox" data-category="violence">
-            <div class="category-icon">⚠️</div>
-            <div class="category-name" id="catViolence">Violence & Gore</div>
-          </label>
-          
-          <label class="category-card">
-            <input type="checkbox" class="category-checkbox" data-category="hate-speech">
-            <div class="category-icon">🚫</div>
-            <div class="category-name" id="catHateSpeech">Hate Speech</div>
-          </label>
-          
-          <label class="category-card">
-            <input type="checkbox" class="category-checkbox" data-category="dating">
-            <div class="category-icon">💘</div>
-            <div class="category-name" id="catDating">Dating & Hookups</div>
-          </label>
+          <div class="category-card" data-category="adult">
+            <button class="cat-btn cat-btn-sites" data-category="adult" data-type="sites" title="Block websites">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </button>
+            <div class="card-center">
+              <div class="card-icon">&#x1f51e;</div>
+              <div class="card-name" data-i18n="categoryAdult">Adult/NSFW</div>
+            </div>
+            <button class="cat-btn cat-btn-text" data-category="adult" data-type="text" title="Filter text content">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </button>
+          </div>
+
+          <div class="category-card" data-category="gambling">
+            <button class="cat-btn cat-btn-sites" data-category="gambling" data-type="sites" title="Block websites">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </button>
+            <div class="card-center">
+              <div class="card-icon">&#x1f3b0;</div>
+              <div class="card-name" data-i18n="categoryGambling">Gambling</div>
+            </div>
+            <button class="cat-btn cat-btn-text" data-category="gambling" data-type="text" title="Filter text content">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </button>
+          </div>
+
+          <div class="category-card" data-category="drugs">
+            <button class="cat-btn cat-btn-sites" data-category="drugs" data-type="sites" title="Block websites">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </button>
+            <div class="card-center">
+              <div class="card-icon">&#x1f48a;</div>
+              <div class="card-name" data-i18n="categoryDrugs">Drugs</div>
+            </div>
+            <button class="cat-btn cat-btn-text" data-category="drugs" data-type="text" title="Filter text content">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </button>
+          </div>
+
+          <div class="category-card" data-category="violence">
+            <button class="cat-btn cat-btn-sites" data-category="violence" data-type="sites" title="Block websites">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </button>
+            <div class="card-center">
+              <div class="card-icon">&#x26a0;&#xfe0f;</div>
+              <div class="card-name" data-i18n="categoryViolence">Violence</div>
+            </div>
+            <button class="cat-btn cat-btn-text" data-category="violence" data-type="text" title="Filter text content">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </button>
+          </div>
+
+          <div class="category-card" data-category="hate-speech">
+            <button class="cat-btn cat-btn-sites" data-category="hate-speech" data-type="sites" title="Block websites">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </button>
+            <div class="card-center">
+              <div class="card-icon">&#x1f6ab;</div>
+              <div class="card-name" data-i18n="categoryHateSpeech">Hate Speech</div>
+            </div>
+            <button class="cat-btn cat-btn-text" data-category="hate-speech" data-type="text" title="Filter text content">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </button>
+          </div>
+
+          <div class="category-card" data-category="dating">
+            <button class="cat-btn cat-btn-sites" data-category="dating" data-type="sites" title="Block websites">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </button>
+            <div class="card-center">
+              <div class="card-icon">&#x1f498;</div>
+              <div class="card-name" data-i18n="categoryDating">Dating</div>
+            </div>
+            <button class="cat-btn cat-btn-text" data-category="dating" data-type="text" title="Filter text content">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Custom Blocked Sites -->
+        <div class="section-header" style="margin-top: 16px;">
+          <div class="section-header-row">
+            <h2 data-i18n="customBlockedSitesLabel">Blocked Sites</h2>
+            <span class="section-badge section-badge-sites" data-i18n="linkedToSites">Website Blocking</span>
+          </div>
+          <p class="section-desc" data-i18n="customBlockedSitesDesc">Add domains to block (one per line)</p>
+        </div>
+        <textarea id="customBlockedSites" rows="3" placeholder="example.com&#10;bad-site.org" data-i18n-placeholder="customBlockedSitesPlaceholder"></textarea>
+
+        <!-- Custom Filters -->
+        <div class="section-header" style="margin-top: 16px;">
+          <div class="section-header-row">
+            <h2 data-i18n="customFiltersLabel">Custom Filters</h2>
+            <span class="section-badge section-badge-text" data-i18n="linkedToText">Content Filtering</span>
+          </div>
+          <p class="section-desc" data-i18n="customFiltersDesc">Add words or phrases to hide (one per line)</p>
+        </div>
+        <textarea id="customFilters" rows="3" placeholder="Enter words or phrases..." data-i18n-placeholder="customFiltersPlaceholder"></textarea>
+      </div>
+
+      <!-- Settings Tab -->
+      <div class="tab-panel" id="settings">
+        <div class="settings-section">
+          <div class="settings-section-title" data-i18n="filterOptionsTitle">Filter Options</div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="blockImagesLabel">Block Images</span>
+              <span class="setting-desc" data-i18n="blockImagesDesc">Hide images with matching metadata</span>
+            </div>
+            <label class="toggle-switch toggle-sm">
+              <input type="checkbox" id="blockImages" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="blockVideosLabel">Block Videos</span>
+              <span class="setting-desc" data-i18n="blockVideosDesc">Hide videos and iframes</span>
+            </div>
+            <label class="toggle-switch toggle-sm">
+              <input type="checkbox" id="blockVideos" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="aggressiveModeLabel">Aggressive Mode</span>
+              <span class="setting-desc" data-i18n="aggressiveModeDescription">Hide entire containers if content matches</span>
+            </div>
+            <label class="toggle-switch toggle-sm">
+              <input type="checkbox" id="aggressiveMode" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="wholeWordLabel">Whole Word Only</span>
+              <span class="setting-desc" data-i18n="wholeWordDesc">Match complete words only</span>
+            </div>
+            <label class="toggle-switch toggle-sm">
+              <input type="checkbox" id="wholeWord" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-name" data-i18n="caseSensitiveLabel">Case Sensitive</span>
+              <span class="setting-desc" data-i18n="caseSensitiveDesc">Distinguish upper/lower case</span>
+            </div>
+            <label class="toggle-switch toggle-sm">
+              <input type="checkbox" id="caseSensitive">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <div class="settings-section-title" data-i18n="whitelistLabel">Whitelist</div>
+          <p class="section-desc" data-i18n="whitelistDesc">Trusted sites excluded from filtering</p>
+          <textarea id="whitelist" rows="4" placeholder="example.com&#10;youtube.com" data-i18n-placeholder="whitelistPlaceholder"></textarea>
         </div>
       </div>
-    </div>
-    
-    <!-- Custom Filters Tab -->
-    <div class="tab-content" id="custom">
-      <div class="section">
-        <h2 id="customTitle">Custom Filters</h2>
-        <p class="description" id="customDesc">Add your own words/phrases to block (one per line)</p>
-        <textarea id="customFilters" rows="10" placeholder="Enter words or phrases..."></textarea>
-      </div>
-    </div>
-    
-    <!-- Settings Tab -->
-    <div class="tab-content" id="settings">
-      <div class="section">
-        <h2 id="settingsTitle">Settings</h2>
-        
-        <div class="setting-group">
-          <h3>Filter Options</h3>
-          <label class="setting-item">
-            <input type="checkbox" id="caseSensitive">
-            <span id="settingCaseSensitive">Case Sensitive</span>
-          </label>
-          
-          <label class="setting-item">
-            <input type="checkbox" id="wholeWord">
-            <span id="settingWholeWord">Whole Word Only</span>
-          </label>
-          
-          <label class="setting-item">
-            <input type="checkbox" id="blockImages">
-            <span id="settingBlockImages">Block Images</span>
-          </label>
-          
-          <label class="setting-item">
-            <input type="checkbox" id="blockVideos">
-            <span id="settingBlockVideos">Block Videos</span>
-          </label>
-          
-          <label class="setting-item">
-            <input type="checkbox" id="aggressiveMode">
-            <span id="settingAggressiveMode">Aggressive Mode</span>
-            <small id="aggressiveModeDesc">Hide entire containers if content matches</small>
-          </label>
-        </div>
-        
-        <div class="setting-group">
-          <h3 id="whitelistTitle">Whitelist</h3>
-          <p class="description" id="whitelistDesc">Trusted sites (one per line)</p>
-          <textarea id="whitelist" rows="5" placeholder="example.com&#10;youtube.com"></textarea>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Statistics Tab -->
-    <div class="tab-content" id="stats">
-      <div class="section">
-        <h2 id="statsTitle">Statistics</h2>
-        
+
+      <!-- Stats Tab -->
+      <div class="tab-panel" id="stats">
         <div class="stats-grid">
-          <div class="stat-card">
+          <div class="stat-card stat-blue">
             <div class="stat-value" id="statsBlockedTodayValue">0</div>
-            <div class="stat-label" id="statsBlockedTodayLabel">Blocked Today</div>
+            <div class="stat-label" data-i18n="statsBlockedToday">Blocked Today</div>
           </div>
-          
-          <div class="stat-card">
+          <div class="stat-card stat-purple">
             <div class="stat-value" id="statsBlockedTotalValue">0</div>
-            <div class="stat-label" id="statsBlockedTotalLabel">Total Blocked</div>
+            <div class="stat-label" data-i18n="statsBlockedTotal">Total Blocked</div>
           </div>
-          
-          <div class="stat-card">
+          <div class="stat-card stat-green">
             <div class="stat-value" id="statsActiveFiltersValue">0</div>
-            <div class="stat-label" id="statsActiveFiltersLabel">Active Filters</div>
+            <div class="stat-label" data-i18n="statsActiveFilters">Active Filters</div>
           </div>
-          
-          <div class="stat-card stat-card-wide">
+          <div class="stat-card stat-orange">
             <div class="stat-value" id="statsBlockedWebsitesValue">0</div>
-            <div class="stat-label" id="statsBlockedWebsitesLabel">🌐 Blocked Websites</div>
+            <div class="stat-label" data-i18n="statsBlockedWebsites">Blocked Sites</div>
           </div>
         </div>
-        
+
+        <div class="stats-breakdown">
+          <div class="settings-section-title" data-i18n="categoriesBreakdown">Categories Breakdown</div>
+          <div id="categoryStats" class="category-stats"></div>
+        </div>
+
         <div class="info-box">
-          <div class="info-icon">ℹ️</div>
-          <div class="info-text">
-            <strong>Categories block both text and entire websites!</strong><br>
-            When you enable a category, it blocks matching words AND domains listed in websites_categories/ folder.
+          <svg class="info-box-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div class="info-box-text" data-i18n="statsInfo">
+            Each category can independently block websites and filter text content on pages.
           </div>
         </div>
       </div>
+
     </div>
-    
-    <!-- Action Buttons -->
-    <div class="actions">
-      <button id="saveBtn" class="btn btn-primary" data-i18n="saveButton">Save Settings</button>
-      <button id="applyBtn" class="btn btn-secondary" data-i18n="applyNowButton">Apply Now</button>
+
+    <!-- Action Bar -->
+    <div class="action-bar">
+      <div class="action-primary">
+        <button id="saveBtn" class="btn btn-save" data-i18n="saveButton">Save</button>
+        <button id="applyBtn" class="btn btn-apply" data-i18n="applyNowButton">Apply Now</button>
+      </div>
+      <div class="action-secondary">
+        <button id="resetBtn" class="btn btn-ghost" title="Reset All">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        </button>
+        <button id="exportBtn" class="btn btn-ghost" title="Export">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </button>
+        <button id="importBtn" class="btn btn-ghost" title="Import">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </button>
+        <div class="action-spacer"></div>
+        <button id="donateBtn" class="btn btn-donate" title="Support Development">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
     </div>
-    
-    <!-- Additional Actions -->
-    <div class="footer-actions">
-      <button id="resetBtn" class="btn btn-small" data-i18n="resetButton">Reset All</button>
-      <button id="exportBtn" class="btn btn-small" data-i18n="exportButton">Export</button>
-      <button id="importBtn" class="btn btn-small" data-i18n="importButton">Import</button>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+      <span class="toast-icon" id="toastIcon"></span>
+      <span class="toast-text" id="toastText"></span>
     </div>
-    
-    <!-- Donate Section -->
-    <div class="donate-section">
-      <h3 id="donateTitle">Support Development</h3>
-      <button id="donateBtn" class="btn btn-donate" data-i18n="donateButton">☕ Buy Me a Coffee</button>
-    </div>
-    
-    <!-- Status Message -->
-    <div class="status" id="status"></div>
   </div>
-  
+
   <script src="popup.js"></script>
 </body>
 </html>

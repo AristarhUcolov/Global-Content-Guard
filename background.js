@@ -1,5 +1,4 @@
-// Global Content Guard - Enhanced Background Script
-// Handles category loading, settings management, and statistics
+// Global Content Guard v3.0 - Background Service Worker
 
 const CATEGORIES = {
   adult: 'categories/adult.txt',
@@ -19,113 +18,127 @@ const WEBSITE_CATEGORIES = {
   dating: 'websites_categories/dating.txt'
 };
 
-// Cache for category words and websites
+const DEFAULT_SETTINGS = {
+  enabled: true,
+  websiteBlocking: true,
+  contentFiltering: true,
+  enabledCategories: [],
+  enabledWebsiteCategories: [],
+  enabledTextCategories: [],
+  customBlockedSites: '',
+  customFilters: '',
+  caseSensitive: false,
+  wholeWord: true,
+  blockImages: true,
+  blockVideos: true,
+  aggressiveMode: true,
+  whitelist: '',
+  statistics: {
+    blockedToday: 0,
+    blockedTotal: 0,
+    lastReset: new Date().toDateString()
+  }
+};
+
 let categoryCache = {};
 let websiteCategoryCache = {};
 
-// Initialize extension
+// ─── Install / Update ───
+
 chrome.runtime.onInstalled.addListener(async (details) => {
   if (details.reason === 'install') {
-    // Set default settings on first install
-    await chrome.storage.sync.set({
-      enabledCategories: [],
-      customFilters: '',
-      caseSensitive: false,
-      wholeWord: true,
-      blockImages: true,
-      blockVideos: true,
-      aggressiveMode: true,
-      whitelist: '',
-      statistics: {
-        blockedToday: 0,
-        blockedTotal: 0,
-        lastReset: new Date().toDateString()
-      }
-    });
-    console.log('Global Content Guard installed successfully!');
+    await chrome.storage.sync.set(DEFAULT_SETTINGS);
   } else if (details.reason === 'update') {
-    console.log('Global Content Guard updated to version', chrome.runtime.getManifest().version);
-  }
-  
-  // Load all categories into cache
-  await loadAllCategories();
-});
+    // Migrate from older versions
+    const data = await chrome.storage.sync.get(null);
+    const updates = {};
 
-// Load a single category file
-async function loadCategory(categoryName) {
-  try {
-    const url = chrome.runtime.getURL(CATEGORIES[categoryName]);
-    const response = await fetch(url);
-    const text = await response.text();
-    const words = text.split('\n')
-      .map(line => line.trim())
-      .filter(line => line.length > 0 && !line.startsWith('#'));
-    return words;
-  } catch (error) {
-    console.error(`Failed to load category ${categoryName}:`, error);
-    return [];
-  }
-}
+    if (data.enabled === undefined) updates.enabled = true;
+    if (data.websiteBlocking === undefined) updates.websiteBlocking = true;
+    if (data.contentFiltering === undefined) updates.contentFiltering = true;
 
-// Load a single website category file
-async function loadWebsiteCategory(categoryName) {
-  try {
-    const url = chrome.runtime.getURL(WEBSITE_CATEGORIES[categoryName]);
-    const response = await fetch(url);
-    const text = await response.text();
-    const domains = text.split('\n')
-      .map(line => line.trim().toLowerCase())
-      .filter(line => line.length > 0 && !line.startsWith('#'));
-    return domains;
-  } catch (error) {
-    console.error(`Failed to load website category ${categoryName}:`, error);
-    return [];
-  }
-}
+    // Migrate enabledCategories -> enabledWebsiteCategories + enabledTextCategories
+    if (data.enabledWebsiteCategories === undefined && data.enabledCategories) {
+      updates.enabledWebsiteCategories = data.enabledCategories;
+    }
+    if (data.enabledTextCategories === undefined && data.enabledCategories) {
+      updates.enabledTextCategories = data.enabledCategories;
+    }
+    if (data.enabledWebsiteCategories === undefined && !data.enabledCategories) {
+      updates.enabledWebsiteCategories = [];
+    }
+    if (data.enabledTextCategories === undefined && !data.enabledCategories) {
+      updates.enabledTextCategories = [];
+    }
 
-// Load all categories
-async function loadAllCategories() {
-  for (const categoryName of Object.keys(CATEGORIES)) {
-    categoryCache[categoryName] = await loadCategory(categoryName);
-  }
-  for (const categoryName of Object.keys(WEBSITE_CATEGORIES)) {
-    websiteCategoryCache[categoryName] = await loadWebsiteCategory(categoryName);
-  }
-  console.log('All categories loaded:', Object.keys(categoryCache));
-  console.log('All website categories loaded:', Object.keys(websiteCategoryCache));
-}
-
-// Get combined filter list based on enabled categories and custom filters
-async function getActiveFilters() {
-  const settings = await chrome.storage.sync.get([
-    'enabledCategories',
-    'customFilters'
-  ]);
-  
-  let allWords = [];
-  
-  // Add words from enabled categories
-  if (settings.enabledCategories && settings.enabledCategories.length > 0) {
-    for (const category of settings.enabledCategories) {
-      if (categoryCache[category]) {
-        allWords = allWords.concat(categoryCache[category]);
-      }
+    if (Object.keys(updates).length > 0) {
+      await chrome.storage.sync.set(updates);
     }
   }
-  
-  // Add custom filters
-  if (settings.customFilters) {
-    const customWords = settings.customFilters.split('\n')
+
+  await loadAllCategories();
+  updateBadge();
+});
+
+// ─── Category Loading ───
+
+async function loadTextFile(path) {
+  try {
+    const url = chrome.runtime.getURL(path);
+    const response = await fetch(url);
+    const text = await response.text();
+    return text.split('\n')
+      .map(line => line.trim())
+      .filter(line => line.length > 0 && !line.startsWith('#'));
+  } catch (error) {
+    console.error(`Failed to load ${path}:`, error);
+    return [];
+  }
+}
+
+async function loadAllCategories() {
+  const promises = [
+    ...Object.entries(CATEGORIES).map(async ([name, path]) => {
+      categoryCache[name] = await loadTextFile(path);
+    }),
+    ...Object.entries(WEBSITE_CATEGORIES).map(async ([name, path]) => {
+      const domains = await loadTextFile(path);
+      websiteCategoryCache[name] = domains.map(d => d.toLowerCase());
+    })
+  ];
+  await Promise.all(promises);
+}
+
+// ─── Active Filters (text-only categories) ───
+
+async function getActiveFilters() {
+  const data = await chrome.storage.sync.get([
+    'enabledTextCategories', 'enabledCategories', 'customFilters'
+  ]);
+
+  let allWords = [];
+
+  // Use enabledTextCategories (new), fall back to enabledCategories (old)
+  const textCats = data.enabledTextCategories || data.enabledCategories || [];
+
+  for (const category of textCats) {
+    if (categoryCache[category]) {
+      allWords = allWords.concat(categoryCache[category]);
+    }
+  }
+
+  if (data.customFilters) {
+    const custom = data.customFilters.split('\n')
       .map(line => line.trim())
       .filter(line => line.length > 0);
-    allWords = allWords.concat(customWords);
+    allWords = allWords.concat(custom);
   }
-  
-  // Remove duplicates
+
   return [...new Set(allWords)];
 }
 
-// Update statistics
+// ─── Statistics ───
+
 async function updateStatistics(count = 1) {
   const data = await chrome.storage.sync.get(['statistics']);
   const stats = data.statistics || {
@@ -133,112 +146,159 @@ async function updateStatistics(count = 1) {
     blockedTotal: 0,
     lastReset: new Date().toDateString()
   };
-  
-  // Reset daily counter if it's a new day
+
   const today = new Date().toDateString();
   if (stats.lastReset !== today) {
     stats.blockedToday = 0;
     stats.lastReset = today;
   }
-  
+
   stats.blockedToday += count;
   stats.blockedTotal += count;
-  
+
   await chrome.storage.sync.set({ statistics: stats });
+  updateBadge();
 }
 
-// Message handler
+// ─── Badge ───
+
+async function updateBadge() {
+  try {
+    const data = await chrome.storage.sync.get(['enabled', 'statistics']);
+
+    if (data.enabled === false) {
+      chrome.action.setBadgeText({ text: 'OFF' });
+      chrome.action.setBadgeBackgroundColor({ color: '#ef4444' });
+      return;
+    }
+
+    const count = data.statistics?.blockedToday || 0;
+    if (count > 0) {
+      chrome.action.setBadgeText({ text: count > 999 ? '999+' : String(count) });
+      chrome.action.setBadgeBackgroundColor({ color: '#4f8cff' });
+    } else {
+      chrome.action.setBadgeText({ text: '' });
+    }
+  } catch { /* service worker context may be invalid */ }
+}
+
+// ─── Domain Matching ───
+
+function isDomainBlocked(hostname, enabledWebsiteCategories) {
+  for (const category of enabledWebsiteCategories) {
+    const domains = websiteCategoryCache[category];
+    if (!domains) continue;
+
+    for (const domain of domains) {
+      if (hostname === domain || hostname.endsWith('.' + domain)) {
+        return { isBlocked: true, category };
+      }
+    }
+  }
+  return { isBlocked: false, category: null };
+}
+
+// ─── Message Handler ───
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "getSettings") {
-    chrome.storage.sync.get([
-      'enabledCategories',
-      'customFilters',
-      'caseSensitive',
-      'wholeWord',
-      'blockImages',
-      'blockVideos',
-      'aggressiveMode',
-      'whitelist'
-    ], async (data) => {
-      // Get active filters
-      const filterWords = await getActiveFilters();
-      sendResponse({
-        ...data,
-        filterText: filterWords.join('\n')
+  switch (request.action) {
+    case 'getSettings': {
+      chrome.storage.sync.get([
+        'enabled', 'websiteBlocking', 'contentFiltering',
+        'enabledCategories', 'enabledWebsiteCategories', 'enabledTextCategories',
+        'customBlockedSites', 'customFilters', 'caseSensitive', 'wholeWord', 'blockImages', 'blockVideos',
+        'aggressiveMode', 'whitelist'
+      ], async (data) => {
+        const filterWords = await getActiveFilters();
+        sendResponse({
+          ...data,
+          filterText: filterWords.join('\n')
+        });
       });
-    });
-    return true; // Required for async response
-  }
-  
-  if (request.action === "updateStatistics") {
-    updateStatistics(request.count || 1);
-    sendResponse({ success: true });
-    return true;
-  }
-  
-  if (request.action === "getActiveFilters") {
-    getActiveFilters().then(filters => {
-      sendResponse({ filters });
-    });
-    return true;
-  }
-  
-  if (request.action === "reloadCategories") {
-    loadAllCategories().then(() => {
-      sendResponse({ success: true });
-    });
-    return true;
-  }
-  
-  if (request.action === "checkBlockedWebsite") {
-    chrome.storage.sync.get(['enabledCategories'], (data) => {
-      const enabledCategories = data.enabledCategories || [];
-      const currentHostname = request.hostname;
-      
-      let isBlocked = false;
-      let blockedCategory = null;
-      
-      for (const category of enabledCategories) {
-        if (websiteCategoryCache[category]) {
-          const blockedDomains = websiteCategoryCache[category];
-          for (const domain of blockedDomains) {
-            // Check if current hostname matches or ends with the blocked domain
-            if (currentHostname === domain || 
-                currentHostname.endsWith('.' + domain) ||
-                domain.includes(currentHostname)) {
-              isBlocked = true;
-              blockedCategory = category;
-              break;
+      return true;
+    }
+
+    case 'updateStatistics': {
+      updateStatistics(request.count || 1).then(() => sendResponse({ success: true }));
+      return true;
+    }
+
+    case 'getActiveFilters': {
+      getActiveFilters().then(filters => sendResponse({ filters }));
+      return true;
+    }
+
+    case 'reloadCategories': {
+      loadAllCategories().then(() => sendResponse({ success: true }));
+      return true;
+    }
+
+    case 'checkBlockedWebsite': {
+      chrome.storage.sync.get([
+        'enabled', 'websiteBlocking',
+        'enabledWebsiteCategories', 'enabledCategories',
+        'customBlockedSites'
+      ], (data) => {
+        if (data.enabled === false || data.websiteBlocking === false) {
+          sendResponse({ isBlocked: false, category: null });
+          return;
+        }
+
+        const hostname = request.hostname;
+
+        // Check custom blocked sites first
+        if (data.customBlockedSites) {
+          const customDomains = data.customBlockedSites.split('\n')
+            .map(d => d.trim().toLowerCase())
+            .filter(d => d.length > 0 && !d.startsWith('#'));
+
+          for (const domain of customDomains) {
+            if (hostname === domain || hostname.endsWith('.' + domain)) {
+              sendResponse({ isBlocked: true, category: 'custom' });
+              return;
             }
           }
-          if (isBlocked) break;
         }
-      }
-      
-      sendResponse({ 
-        isBlocked, 
-        category: blockedCategory 
+
+        // Check category-based blocked sites
+        const siteCats = data.enabledWebsiteCategories || data.enabledCategories || [];
+        const result = isDomainBlocked(hostname, siteCats);
+        sendResponse(result);
       });
-    });
-    return true;
+      return true;
+    }
   }
 });
 
-// Reset daily statistics at midnight
-if (chrome.alarms) {
-  chrome.alarms.create('resetDailyStats', { 
-    periodInMinutes: 1440,
-    when: Date.now() + 1000 * 60 * 60 * 24 // Start after 24 hours
-  });
-  
-  chrome.alarms.onAlarm.addListener((alarm) => {
-    if (alarm.name === 'resetDailyStats') {
-      chrome.storage.sync.get(['statistics'], (data) => {
-        const stats = data.statistics || {};
+// ─── Daily Reset Alarm ───
+
+chrome.alarms.create('resetDailyStats', {
+  periodInMinutes: 60,
+  delayInMinutes: 1
+});
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === 'resetDailyStats') {
+    chrome.storage.sync.get(['statistics'], (data) => {
+      const stats = data.statistics || {};
+      const today = new Date().toDateString();
+      if (stats.lastReset !== today) {
         stats.blockedToday = 0;
-        stats.lastReset = new Date().toDateString();
+        stats.lastReset = today;
         chrome.storage.sync.set({ statistics: stats });
-      });
-    }
-  });
-}
+        updateBadge();
+      }
+    });
+  }
+});
+
+// ─── On Startup ───
+
+chrome.runtime.onStartup?.addListener(async () => {
+  await loadAllCategories();
+  updateBadge();
+});
+
+// Load immediately for service worker restarts
+loadAllCategories();
+updateBadge();

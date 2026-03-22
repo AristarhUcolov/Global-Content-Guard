@@ -10,11 +10,11 @@
   "popupTitle": {
     "message": "Защита Контента"
   },
-  "tabCategories": {
-    "message": "Категории"
+  "tabDashboard": {
+    "message": "Главная"
   },
-  "tabCustom": {
-    "message": "Свои Фильтры"
+  "tabProtection": {
+    "message": "Защита"
   },
   "tabSettings": {
     "message": "Настройки"
@@ -22,17 +22,47 @@
   "tabStatistics": {
     "message": "Статистика"
   },
+  "statusProtected": {
+    "message": "Защита Активна"
+  },
+  "statusProtectedDesc": {
+    "message": "Ваш браузер под защитой"
+  },
+  "statusPaused": {
+    "message": "Защита Приостановлена"
+  },
+  "statusPausedDesc": {
+    "message": "Фильтрация контента отключена"
+  },
+  "websiteBlocking": {
+    "message": "Блокировка Сайтов"
+  },
+  "websiteBlockingDesc": {
+    "message": "Блокировать целые сайты"
+  },
+  "contentFiltering": {
+    "message": "Фильтрация Контента"
+  },
+  "contentFilteringDesc": {
+    "message": "Скрывать контент на страницах"
+  },
+  "categoriesTitle": {
+    "message": "Категории Фильтров"
+  },
+  "categoriesDesc": {
+    "message": "Выберите категории для блокировки"
+  },
   "categoryAdult": {
-    "message": "Контент для Взрослых/NSFW"
+    "message": "Взрослый/NSFW"
   },
   "categoryGambling": {
-    "message": "Азартные Игры и Казино"
+    "message": "Азартные Игры"
   },
   "categoryDrugs": {
-    "message": "Наркотики и Вещества"
+    "message": "Наркотики"
   },
   "categoryViolence": {
-    "message": "Насилие и Жестокость"
+    "message": "Насилие"
   },
   "categoryHateSpeech": {
     "message": "Язык Ненависти"
@@ -40,85 +70,148 @@
   "categoryDating": {
     "message": "Знакомства"
   },
+  "customBlockedSitesLabel": {
+    "message": "Заблокированные Сайты"
+  },
+  "customBlockedSitesDesc": {
+    "message": "Добавьте домены для блокировки (по одному на строку)"
+  },
+  "customBlockedSitesPlaceholder": {
+    "message": "example.com\nbad-site.org"
+  },
+  "linkedToSites": {
+    "message": "Блокировка Сайтов"
+  },
+  "linkedToText": {
+    "message": "Фильтрация Контента"
+  },
   "customFiltersLabel": {
-    "message": "Добавьте Свои Слова/Фразы"
+    "message": "Свои Фильтры"
+  },
+  "customFiltersDesc": {
+    "message": "Добавьте слова или фразы для скрытия (по одному на строку)"
   },
   "customFiltersPlaceholder": {
-    "message": "Введите слова или фразы для блокировки (по одной на строку)"
+    "message": "Введите слова или фразы для блокировки..."
   },
-  "caseSensitiveLabel": {
-    "message": "Учитывать Регистр"
-  },
-  "wholeWordLabel": {
-    "message": "Только Целые Слова"
+  "filterOptionsTitle": {
+    "message": "Параметры Фильтрации"
   },
   "blockImagesLabel": {
     "message": "Блокировать Изображения"
   },
+  "blockImagesDesc": {
+    "message": "Скрывать изображения с совпадающими данными"
+  },
   "blockVideosLabel": {
     "message": "Блокировать Видео"
+  },
+  "blockVideosDesc": {
+    "message": "Скрывать видео и iframe"
   },
   "aggressiveModeLabel": {
     "message": "Агрессивный Режим"
   },
   "aggressiveModeDescription": {
-    "message": "Скрывать целые контейнеры при совпадении"
+    "message": "Скрывать контейнеры при совпадении контента"
+  },
+  "wholeWordLabel": {
+    "message": "Только Целые Слова"
+  },
+  "wholeWordDesc": {
+    "message": "Совпадение только по полным словам"
+  },
+  "caseSensitiveLabel": {
+    "message": "Учитывать Регистр"
+  },
+  "caseSensitiveDesc": {
+    "message": "Различать заглавные и строчные буквы"
   },
   "whitelistLabel": {
-    "message": "Белый Список (Доверенные Сайты)"
+    "message": "Белый Список"
+  },
+  "whitelistDesc": {
+    "message": "Доверенные сайты без фильтрации"
   },
   "whitelistPlaceholder": {
-    "message": "Введите домены для исключения (по одному на строку)\nПример: youtube.com"
+    "message": "example.com\nyoutube.com"
   },
   "saveButton": {
-    "message": "Сохранить Настройки"
+    "message": "Сохранить"
   },
   "applyNowButton": {
-    "message": "Применить Сейчас"
+    "message": "Применить"
   },
   "resetButton": {
-    "message": "Сбросить Всё"
+    "message": "Сбросить"
   },
   "exportButton": {
-    "message": "Экспорт Настроек"
+    "message": "Экспорт"
   },
   "importButton": {
-    "message": "Импорт Настроек"
+    "message": "Импорт"
   },
   "statsBlockedToday": {
-    "message": "Заблокировано Сегодня"
+    "message": "Сегодня"
   },
   "statsBlockedTotal": {
-    "message": "Всего Заблокировано"
+    "message": "Всего"
   },
   "statsActiveFilters": {
-    "message": "Активных Фильтров"
+    "message": "Фильтров"
   },
   "statsBlockedWebsites": {
-    "message": "🌐 Заблокированных Сайтов"
+    "message": "Сайтов"
+  },
+  "categoriesBreakdown": {
+    "message": "Разбивка по Категориям"
+  },
+  "words": {
+    "message": "Слов"
+  },
+  "sites": {
+    "message": "Сайтов"
+  },
+  "legendSites": {
+    "message": "Сайты"
+  },
+  "legendText": {
+    "message": "Текст"
+  },
+  "statsInfo": {
+    "message": "Каждая категория может независимо блокировать сайты и фильтровать текстовый контент."
   },
   "donateTitle": {
     "message": "Поддержать Разработку"
   },
   "donateButton": {
-    "message": "Угостить Кофе"
+    "message": "Поддержать"
   },
   "statusSaved": {
-    "message": "Настройки успешно сохранены!"
+    "message": "Настройки сохранены!"
   },
   "statusApplied": {
-    "message": "Фильтры применены к текущей странице!"
+    "message": "Фильтры применены!"
   },
-  "statusError": {
-    "message": "Произошла ошибка. Пожалуйста, попробуйте снова."
+  "statusRefreshNeeded": {
+    "message": "Обновите страницу для применения"
   },
   "statusReset": {
-    "message": "Все настройки были сброшены."
+    "message": "Настройки сброшены"
+  },
+  "statusError": {
+    "message": "Произошла ошибка"
   },
   "confirmReset": {
-    "message": "Вы уверены, что хотите сбросить все настройки?"
+    "message": "Сбросить все настройки?"
   },
-  "enabledLabel": {
-    "message": "Включено"
+  "exportSuccess": {
+    "message": "Настройки экспортированы"
+  },
+  "importSuccess": {
+    "message": "Настройки импортированы"
+  },
+  "importError": {
+    "message": "Неверный файл настроек"
   }
 }
